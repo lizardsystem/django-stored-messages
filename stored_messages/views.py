@@ -27,7 +27,7 @@ class InboxViewSet(viewsets.ViewSet):
         try:
             msg = backend.inbox_get(request.user, pk)
         except MessageDoesNotExist as e:
-            return Response(e.message, status='404')
+            return Response(str(e), status='404')
 
         serializer = InboxSerializer(msg, many=False)
         return Response(serializer.data)
@@ -43,7 +43,7 @@ class InboxViewSet(viewsets.ViewSet):
         try:
             backend.inbox_delete(request.user, pk)
         except MessageDoesNotExist as e:
-            return Response(e.message, status='404')
+            return Response(str(e), status='404')
 
         return Response({'status': 'message marked as read'})
 

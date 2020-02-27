@@ -6,6 +6,7 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sites",
+    "django.contrib.admin",
     "django.contrib.messages",
     "django.contrib.sessions",
     "stored_messages",
@@ -30,12 +31,11 @@ DATABASES = {
 ROOT_URLCONF = "stored_messages.tests.urls"
 
 # Django 1.8 has a new, minimal default set for MIDDLEWARE_CLASSES so be explicit
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from .base import BackendBaseTest
+from django.contrib.auth.models import AnonymousUser
 
 from django.contrib.messages.storage import default_storage
 
@@ -38,9 +39,7 @@ class TestStorage(BackendBaseTest):
         self.assertEqual(len(self.backend.archive_list(self.user)), 1)
 
     def test_store_anonymous(self):
-        self.request.user = mock.MagicMock(wraps=self.user)
-        self.request.user.is_anonymous.return_value = True
-        self.request.user.is_authenticated.return_value = False
+        self.request.user = AnonymousUser()
         self.request._messages = default_storage(self.request)
         add_message(self.request, STORED_ERROR, "an SOS to the world ☢")
         add_message(self.request, ERROR, "this error won't be persisted ☢")
